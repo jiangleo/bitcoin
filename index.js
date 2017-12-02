@@ -93,7 +93,7 @@ class Address {
         // 2. hash(version prefix + payload)
         const checksum = Hash.sha256(Hash.sha256(addVersionPrefix)).slice(0, 4)
         // 3. add first 4 bytes as checksum
-        const addChecksum = Buffer.concat([addVersionPrefix, hash])
+        const addChecksum = Buffer.concat([addVersionPrefix, checksum])
         // 4. encode in base-58
         return bs58.encode(addChecksum);
     }
@@ -128,7 +128,6 @@ const publicKey = new PublicKey(privateKey)
 
 console.log(publicKey)
 
-
 const address = new Address(publicKey)
 
-console.log(address.toString())
+console.log(address)
